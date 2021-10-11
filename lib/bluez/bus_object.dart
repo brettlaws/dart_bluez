@@ -1,9 +1,9 @@
 abstract class BusObject {
-  BusObject(this.path);
+  BusObject(this.path, this.busInterface);
 
   final String path;
 
-  String get busInterface;
+  String busInterface;
 
   Future<String> getPropertyString(String property);
 
@@ -15,4 +15,8 @@ abstract class BusObject {
       {List<int> data = const [],
       String? replySignature,
       bool expectReply = true});
+}
+
+abstract class BusObjectFactory {
+  BusObject busObject(String path, String interface);
 }

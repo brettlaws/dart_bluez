@@ -1,27 +1,25 @@
 import 'package:dart_bluez/api/bluetooth_characteristic.dart';
 import 'package:dart_bluez/api/bluetooth_uuid.dart';
-import 'package:dart_bluez/bluez/bluez_object.dart';
+import 'package:dart_bluez/bluez/bus_object.dart';
 
-class BluezCharacteristic extends BluezObject
-    implements BluetoothCharacteristic {
-  BluezCharacteristic(String path) : super(path);
+class BluezCharacteristic implements BluetoothCharacteristic {
+  BluezCharacteristic(this.object);
 
-  @override
-  String get busInterface => 'GattCharacteristic1';
+  final BusObject object;
 
   @override
   Future<BluetoothUuid> get uuid async {
-    final id = await getPropertyString('UUID');
+    final id = await object.getPropertyString('UUID');
     return BluetoothUuid(id);
   }
 
   @override
   Future<List<int>> read() async {
-    return await getPropertyBytes('Value');
+    return await object.getPropertyBytes('Value');
   }
 
   @override
   void write(List<int> value) async {
-    call('Write', data: value);
+    object.call('Write', data: value);
   }
 }

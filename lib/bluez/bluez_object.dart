@@ -3,8 +3,8 @@ import 'package:dbus/dbus.dart';
 import 'package:dart_bluez/bluez/dbus_client_singleton.dart';
 import 'package:dart_bluez/bluez/bluez_common.dart';
 
-abstract class BluezObject extends BusObject {
-  BluezObject(String path) : super(path) {
+class BluezObject extends BusObject {
+  BluezObject(String path, String interface) : super(path, interface) {
     object = DBusRemoteObject(DbusClientSingleton().client,
         name: 'org.bluez', path: DBusObjectPath(path));
   }
@@ -53,4 +53,10 @@ abstract class BluezObject extends BusObject {
         replySignature:
             replySignature == null ? null : DBusSignature(replySignature));
   }
+}
+
+class BluezObjectFactory implements BusObjectFactory {
+  @override
+  BusObject busObject(String path, String interface) =>
+      BluezObject(path, interface);
 }

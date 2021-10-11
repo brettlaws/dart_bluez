@@ -1,13 +1,10 @@
 import 'package:dart_bluez/bluez/bus_object.dart';
 
 class MockBusObject extends BusObject {
-  MockBusObject(String path) : super(path);
+  MockBusObject(String path, String interface) : super(path, interface);
 
   final String _doing = 'something';
   bool _doingSomething = false;
-
-  @override
-  String get busInterface => 'org.mock.Interface1';
 
   @override
   void call(String method,
@@ -18,12 +15,14 @@ class MockBusObject extends BusObject {
       _doingSomething = true;
     } else if (method == 'DoNothing') {
       _doingSomething = false;
+    } else {
+      throw Exception('Method $method doesn\'t exist.');
     }
   }
 
   @override
   Future<bool> getPropertyBool(String property) async {
-    if (property == 'doingSomething') {
+    if (property == 'DoingSomething') {
       return _doingSomething;
     } else {
       throw Exception('Invalid property $property');
@@ -41,10 +40,16 @@ class MockBusObject extends BusObject {
 
   @override
   Future<String> getPropertyString(String property) async {
-    if (property == 'doing') {
+    if (property == 'Doing') {
       return _doing;
     } else {
       throw Exception('Invalid property $property');
     }
   }
+}
+
+class MockBusObjectFactory implements BusObjectFactory {
+  @override
+  BusObject busObject(String path, String interface) =>
+      MockBusObject(path, interface);
 }
