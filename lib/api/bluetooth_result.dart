@@ -1,0 +1,4 @@
+enum BluetoothResult {
+  success,
+  failure,
+}
