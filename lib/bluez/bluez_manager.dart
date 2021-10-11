@@ -1,15 +1,16 @@
-import 'package:dart_bluez/api/bluetooth_adapter.dart';
-import 'package:dart_bluez/api/bluetooth_manager.dart';
+import 'package:dart_bluez/api/adapter_interface.dart';
+import 'package:dart_bluez/api/adapter_manager_interface.dart';
 import 'package:dart_bluez/bluez/bluez_common.dart';
 import 'package:dart_bluez/bluez/bluez_object_manager.dart';
 import '../config.dart';
 import 'bluez_adapter.dart';
 
-class BluezManager extends BluezObjectManager implements BluetoothManager {
+class BluezManager extends BluezObjectManager
+    implements AdapterManagerInterface {
   BluezManager();
 
   @override
-  Future<List<BluetoothAdapter>> get adapters async {
+  Future<List<AdapterInterface>> get adapters async {
     final l = <BluezAdapter>[];
     iterateBluezObjects(
         [

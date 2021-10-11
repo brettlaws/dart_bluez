@@ -1,10 +1,10 @@
-import 'package:dart_bluez/api/bluetooth_adapter.dart';
-import 'package:dart_bluez/api/bluetooth_device.dart';
+import 'package:dart_bluez/api/adapter_interface.dart';
+import 'package:dart_bluez/api/device_interface.dart';
 import 'package:dart_bluez/bluez/bus_object.dart';
 import 'package:dart_bluez/config.dart';
 import 'bluez_device.dart';
 
-class BluezAdapter implements BluetoothAdapter {
+class BluezAdapter implements AdapterInterface {
   BluezAdapter(this.object);
 
   final BusObject object;
@@ -20,8 +20,8 @@ class BluezAdapter implements BluetoothAdapter {
   }
 
   @override
-  Future<List<BluetoothDevice>> scan(Duration duration) async {
-    final s = <BluetoothDevice>[];
+  Future<List<DeviceInterface>> scan(Duration duration) async {
+    final s = <DeviceInterface>[];
     object.call('StartDiscovery', expectReply: false);
     await Future.delayed(
         duration, () async => object.call('StopDiscovery', expectReply: false));

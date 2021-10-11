@@ -1,20 +1,20 @@
 import 'dart:developer';
-import 'package:dart_bluez/api/bluetooth_device.dart';
-import 'package:dart_bluez/api/bluetooth_error.dart';
-import 'package:dart_bluez/api/bluetooth_result.dart';
-import 'package:dart_bluez/api/bluetooth_service.dart';
+import 'package:dart_bluez/api/device_interface.dart';
+import 'package:dart_bluez/api/service_interface.dart';
 import 'package:dart_bluez/bluez/bus_object.dart';
+import 'package:dart_bluez/model/bluetooth_error.dart';
+import 'package:dart_bluez/model/bluetooth_result.dart';
 import 'package:dart_bluez/config.dart';
 import 'bluez_service.dart';
 
-class BluezDevice implements BluetoothDevice {
+class BluezDevice implements DeviceInterface {
   BluezDevice(this.object);
 
   final BusObject object;
 
   @override
-  Future<List<BluetoothService>> get services async {
-    final services = <BluetoothService>[];
+  Future<List<ServiceInterface>> get services async {
+    final services = <ServiceInterface>[];
     if (await connected) {
       objectManagerFactory.objectManager().iterateBluezObjects(
           [(s) => s.contains('${object.path}/service')],

@@ -1,11 +1,11 @@
-import 'package:dart_bluez/api/bluetooth_adapter.dart';
-import 'package:dart_bluez/api/bluetooth_manager.dart';
+import 'package:dart_bluez/api/adapter_interface.dart';
+import 'package:dart_bluez/api/adapter_manager_interface.dart';
 import 'package:dart_bluez/bluez/bluez_manager.dart';
 import 'package:dbus/dbus.dart';
 
 void test() async {
-  final BluetoothManager bluez = BluezManager();
-  final List<BluetoothAdapter> adapters = await bluez.adapters;
+  final AdapterManagerInterface bluez = BluezManager();
+  final List<AdapterInterface> adapters = await bluez.adapters;
   for (var adapter in adapters) {
     final devices = await adapter.scan(Duration(seconds: 5));
     for (var device in devices) {

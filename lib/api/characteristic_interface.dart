@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:dart_bluez/api/bluetooth_uuid.dart';
+import 'package:dart_bluez/model/bluetooth_uuid.dart';
 
-abstract class BluetoothCharacteristic {
+abstract class CharacteristicInterface {
   // final controller = StreamController<List<int>>();
 
   Future<BluetoothUuid> get uuid;

@@ -1,8 +1,8 @@
-import 'package:dart_bluez/api/bluetooth_characteristic.dart';
-import 'package:dart_bluez/api/bluetooth_uuid.dart';
+import 'package:dart_bluez/api/characteristic_interface.dart';
 import 'package:dart_bluez/bluez/bus_object.dart';
+import 'package:dart_bluez/model/bluetooth_uuid.dart';
 
-class BluezCharacteristic implements BluetoothCharacteristic {
+class BluezCharacteristic implements CharacteristicInterface {
   BluezCharacteristic(this.object);
 
   final BusObject object;
