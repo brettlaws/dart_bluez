@@ -1,10 +1,10 @@
-import 'package:dart_bluez/bluez/object_manager.dart';
+import 'package:dart_bluez/bluez/object_iterator.dart';
 import 'package:dbus/dbus.dart';
 import 'package:dart_bluez/bluez/bluez_common.dart';
 import 'package:dart_bluez/bluez/dbus_client_singleton.dart';
 import 'package:dart_bluez/string_checker.dart';
 
-class BluezObjectManager implements ObjectManager {
+class BluezObjectIterator implements ObjectIterator {
   DBusClient get client => DbusClientSingleton().client;
 
   @override
@@ -31,7 +31,7 @@ class BluezObjectManager implements ObjectManager {
   }
 }
 
-class BluezObjectManagerFactory extends ObjectManagerFactory {
+class BluezObjectIteratorFactory extends ObjectIteratorFactory {
   @override
-  ObjectManager objectManager() => BluezObjectManager();
+  ObjectIterator objectIterator() => BluezObjectIterator();
 }

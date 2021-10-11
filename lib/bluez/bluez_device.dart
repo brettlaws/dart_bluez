@@ -16,7 +16,7 @@ class BluezDevice implements DeviceInterface {
   Future<List<ServiceInterface>> get services async {
     final services = <ServiceInterface>[];
     if (await connected) {
-      objectManagerFactory.objectManager().iterateBluezObjects(
+      objectIteratorFactory.objectIterator().iterateBluezObjects(
           [(s) => s.contains('${object.path}/service')],
           (path) => services.add(
               BluezService(busObjectFactory.busObject(path, 'GattService1'))));

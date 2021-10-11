@@ -19,7 +19,7 @@ class BluezService implements ServiceInterface {
   @override
   Future<List<CharacteristicInterface>> get characteristics async {
     final characteristics = <CharacteristicInterface>[];
-    objectManagerFactory.objectManager().iterateBluezObjects(
+    objectIteratorFactory.objectIterator().iterateBluezObjects(
         [(s) => s.contains('${object.path}/char')],
         (path) => characteristics.add(BluezCharacteristic(
             busObjectFactory.busObject(path, 'GattCharacteristic1'))));

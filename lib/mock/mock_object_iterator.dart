@@ -1,9 +1,9 @@
 import 'package:dart_bluez/bluez/bus_object.dart';
-import 'package:dart_bluez/bluez/object_manager.dart';
+import 'package:dart_bluez/bluez/object_iterator.dart';
 import 'package:dart_bluez/config.dart';
 import 'package:dart_bluez/string_checker.dart';
 
-class MockObjectManager implements ObjectManager {
+class MockObjectIterator implements ObjectIterator {
   final objects = <BusObject>[
     busObjectFactory.busObject('/some/path', 'some.interface')
   ];
@@ -19,7 +19,7 @@ class MockObjectManager implements ObjectManager {
   }
 }
 
-class MockObjectManagerFactory implements ObjectManagerFactory {
+class MockObjectIteratorFactory implements ObjectIteratorFactory {
   @override
-  ObjectManager objectManager() => MockObjectManager();
+  ObjectIterator objectIterator() => MockObjectIterator();
 }

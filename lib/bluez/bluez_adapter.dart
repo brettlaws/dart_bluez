@@ -25,7 +25,7 @@ class BluezAdapter implements AdapterInterface {
     object.call('StartDiscovery', expectReply: false);
     await Future.delayed(
         duration, () async => object.call('StopDiscovery', expectReply: false));
-    objectManagerFactory.objectManager().iterateBluezObjects(
+    objectIteratorFactory.objectIterator().iterateBluezObjects(
         [
           (s) => s.contains('${object.path}/dev_'),
           (s) =>

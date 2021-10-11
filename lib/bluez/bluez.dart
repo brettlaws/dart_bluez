@@ -1,13 +1,12 @@
 import 'package:dart_bluez/api/adapter_interface.dart';
 import 'package:dart_bluez/api/adapter_manager_interface.dart';
 import 'package:dart_bluez/bluez/bluez_common.dart';
-import 'package:dart_bluez/bluez/bluez_object_manager.dart';
+import 'package:dart_bluez/bluez/bluez_object_iterator.dart';
 import '../config.dart';
 import 'bluez_adapter.dart';
 
-class BluezManager extends BluezObjectManager
-    implements AdapterManagerInterface {
-  BluezManager();
+class Bluez extends BluezObjectIterator implements AdapterManagerInterface {
+  Bluez();
 
   @override
   Future<List<AdapterInterface>> get adapters async {
